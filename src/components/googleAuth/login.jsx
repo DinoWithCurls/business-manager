@@ -1,12 +1,19 @@
 
-import React from 'react';
+import React, {useState} from 'react';
 import {useGoogleLogin} from 'react-google-login';
-import { refreshTokenSetup } from '../../utils/refreshTokenSetup';
 
+import { refreshTokenSetup } from '../../utils/refreshTokenSetup';
+//import { useDispatch, useSelector} from 'react-redux';
 const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 const GoogleLoginButton = () => {
-     const onSuccess = (res) => {
-         console.log('[Login Success] currentUser: ', res.profileObj);
+    //const dispatch = useDispatch();
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    
+    const onSuccess = (res) => {
+         console.log(`[Login Success] currentUser` );
+         setName(res.profileObj.name)
+         setEmail(res.profileObj.email)
          refreshTokenSetup(res);
      }
      const onFailure = (res) => {
@@ -24,6 +31,10 @@ const GoogleLoginButton = () => {
             <button onClick={signIn} className="w-40 h-10 border-2 border-emerald-600">
                 <span>Sign in with Google</span>
             </button>
+            <div>
+                <span>NAME: {name}</span>
+                <span>EMAIL: {email}</span>
+            </div>
         </div>
     );
 };
