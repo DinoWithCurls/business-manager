@@ -1,5 +1,5 @@
 import React from "react";
-import CrudButton from "./crudButton";
+//import CrudButton from "./crudButton";
 const ItemCard = ({ item }) => {
   return (
     <div className="flex flex-row">
@@ -12,12 +12,12 @@ const ItemCard = ({ item }) => {
           <li>{item.quantity}</li>
         </ul>
       </div>
-      <div>
+      {/*<div>
         <div className="flex flex-col">
             <CrudButton buttonType={"EDIT"} />
             <CrudButton buttonType={"DELETE"} />
         </div>
-      </div>
+  </div>*/}
     </div>
   );
 };

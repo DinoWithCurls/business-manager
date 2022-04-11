@@ -1,7 +1,8 @@
 import React from "react";
-//import data from '../mock';
+import data from '../mock/data.json';
 //import GoogleLogoutButton from "../components/googleAuth/logout";
 import Profile from "../components/profileTab";
+import ItemCard from "../components/itemCard";
 function Home() {
   return (
     <div className="flex flex-row">
@@ -26,7 +27,11 @@ function Home() {
           <div>
             {/*The main block for rendering data */}
             Items
-            <div>item</div>
+            <div>
+              {data.map(item => (
+                <ItemCard item={item} key={item.id} />
+              ))}
+            </div>
             {/*Child div storing data, with Edit and Delete Button */}
           </div>
         </div>
