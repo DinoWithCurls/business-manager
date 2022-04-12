@@ -14,8 +14,9 @@ function Home() {
     openAddModal(false);
   }
   const addItem = (val) => {
+    var jsonArray = JSON.parse(JSON.stringify(val))
     getItems(val);
-    data.push(items)
+    data.push(jsonArray)
   }
   useEffect(()=>{
     console.log(JSON.stringify(items))

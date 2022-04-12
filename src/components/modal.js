@@ -67,11 +67,11 @@ const ModalComponent = ({ open, onCloseModal, buttonType, item, addItem }) => {
                 <div className='mb-10  justify-center items-center'>{buttonType} DETAILS</div>
                 <form onSubmit={handleSubmit}>
                     <label className='flex flex-row'>Name
-                        <input id='name' name='name' type='text' className='ml-10 mb-2 border-2' value={values.customer_name} onChange={handleChange} onBlur={handleBlur} />
+                        <input id='customer_name' name='customer_name' type='text' className='ml-10 mb-2 border-2' value={values.customer_name} onChange={handleChange} onBlur={handleBlur} />
                     </label>
                     {touched.name && errors.name ? (<div className='mb-2 text-red-400'>{errors.name}</div>) : null}
                     <label className='flex flex-row'>Email
-                        <input id='email' name='email' type='email' className='ml-11 mb-2 border-2' value={values.customer_email} onChange={handleChange} onBlur={handleBlur} />
+                        <input id='customer_email' name='customer_email' type='email' className='ml-11 mb-2 border-2' value={values.customer_email} onChange={handleChange} onBlur={handleBlur} />
                     </label>
                     {touched.email &&  errors.email ? (<div className='mb-2 text-red-400'>{errors.email}</div>): null}
                     <label className='flex flex-row'>Product
