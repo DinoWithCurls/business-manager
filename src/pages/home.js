@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import data from "../mock/data.json";
 import Profile from "../components/profileTab";
 import ItemCard from "../components/itemCard";
@@ -6,12 +6,20 @@ import CrudButton from "../components/crudButton";
 import ModalComponent from "../components/modal";
 function Home() {
   const [addModalState, openAddModal] = useState(false);
+  const [items, getItems] = useState([]);
   const onOpen = () => {
     openAddModal(true)
   }
   const onClose = () => {
     openAddModal(false);
   }
+  const addItem = (val) => {
+    getItems(val);
+    data.push(items)
+  }
+  useEffect(()=>{
+    console.log(JSON.stringify(items))
+  }, [items])
   return (
     <div className="flex flex-row">
       <div className="basis-1/5 mr-1.5">
@@ -29,7 +37,7 @@ function Home() {
               <CrudButton buttonType={"ADD"} onClick={onOpen}/>
             </div>
           </div>
-          {addModalState ? (<ModalComponent open={addModalState} buttonType={'ADD'} onCloseModal={onClose} item={null} />) : null}
+          {addModalState ? (<ModalComponent open={addModalState} buttonType={'ADD'} onCloseModal={onClose} item={null} addItem={addItem} />) : null}
           <div>
             <div>
               {data.map((item) => (

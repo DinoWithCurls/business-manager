@@ -25,18 +25,38 @@ const validate = (values) => {
     }
     return errors;
 }
-const ModalComponent = ({ open, onCloseModal, buttonType, item }) => {
+const ModalComponent = ({ open, onCloseModal, buttonType, item, addItem }) => {
+    const rand = (length, ...ranges) => {
+            var str = "";
+            while(length--){
+                var ind = Math.floor(Math.random() * ranges.length);              
+                var min = ranges[ind][0].charCodeAt(0),                           
+                max = ranges[ind][1].charCodeAt(0);                           
+                var c = Math.floor(Math.random() * (max - min + 1)) + min;        
+                str += String.fromCharCode(c);
+            }
+            return str;
+    }
     const formik = useFormik({
         initialValues: {
-            id: '',
-            name: '',
-            email: '',
-            product: '',
-            quantity: ''
+            id: (item ? item.id : rand(25, ["a", "z"], ["0","9"])),
+            customer_name: (item ? item.customer_name : ''),
+            customer_email: (item ? item.customer_email : ''),
+            product: (item ? item.product : ''),
+            quantity: (item ? item.quantity : '')
         },
         validate,
         onSubmit: values => {
-            alert('Modal submitted!')
+            if(!item) {
+                const details = {
+                    id: values.id,
+                    customer_name: values.customer_name,
+                    customer_email: values.customer_email,
+                    product: values.product,
+                    quantity: values.quantity
+                }
+                addItem(details);
+            }
         }
     })
     
@@ -47,11 +67,11 @@ const ModalComponent = ({ open, onCloseModal, buttonType, item }) => {
                 <div className='mb-10  justify-center items-center'>{buttonType} DETAILS</div>
                 <form onSubmit={handleSubmit}>
                     <label className='flex flex-row'>Name
-                        <input id='name' name='name' type='text' className='ml-10 mb-2 border-2' value={values.name} onChange={handleChange} onBlur={handleBlur} />
+                        <input id='name' name='name' type='text' className='ml-10 mb-2 border-2' value={values.customer_name} onChange={handleChange} onBlur={handleBlur} />
                     </label>
                     {touched.name && errors.name ? (<div className='mb-2 text-red-400'>{errors.name}</div>) : null}
                     <label className='flex flex-row'>Email
-                        <input id='email' name='email' type='email' className='ml-11 mb-2 border-2' value={values.email} onChange={handleChange} onBlur={handleBlur} />
+                        <input id='email' name='email' type='email' className='ml-11 mb-2 border-2' value={values.customer_email} onChange={handleChange} onBlur={handleBlur} />
                     </label>
                     {touched.email &&  errors.email ? (<div className='mb-2 text-red-400'>{errors.email}</div>): null}
                     <label className='flex flex-row'>Product
