@@ -41,30 +41,32 @@ const ModalComponent = ({ open, onCloseModal, buttonType, }) => {
     })
     const { values, handleSubmit, handleBlur, handleChange, errors, touched } = formik;
     return (
-        <div>
+        <div className='flex flex-col'>
             <Modal open={open} onClose={onCloseModal} center>
-                <div>{buttonType} DETAILS</div>
+                <div className='mb-10  justify-center items-center'>{buttonType} DETAILS</div>
                 <form onSubmit={handleSubmit}>
-                    <label>Enter Name:
-                        <input id='name' name='name' type='text' value={values.name} onChange={handleChange} onBlur={handleBlur} />
+                    <label className='flex flex-row'>Name
+                        <input id='name' name='name' type='text' className='ml-10 mb-2 border-2' value={values.name} onChange={handleChange} onBlur={handleBlur} />
                     </label>
-                    {touched.name && errors.name ? (<div>{errors.name}</div>) : null}
-                    <label>Enter Email:
-                        <input id='email' name='email' type='email' value={values.email} onChange={handleChange} onBlur={handleBlur} />
+                    {touched.name && errors.name ? (<div className='mb-2 text-red-400'>{errors.name}</div>) : null}
+                    <label className='flex flex-row'>Email
+                        <input id='email' name='email' type='email' className='ml-11 mb-2 border-2' value={values.email} onChange={handleChange} onBlur={handleBlur} />
                     </label>
-                    {touched.email &&  errors.email ? (<div>{errors.email}</div>): null}
-                    <label>Select Product type:
-                        <select value={values.product} onChange={handleChange} onBlur={handleBlur}>
+                    {touched.email &&  errors.email ? (<div className='mb-2 text-red-400'>{errors.email}</div>): null}
+                    <label className='flex flex-row'>Product
+                        <select value={values.product} className='ml-12 mb-2 border-2' onChange={handleChange} onBlur={handleBlur}>
+                            <option value="Nada">Select</option>
                             <option value='Product 1'>Product 1</option>
                             <option value='Product 2'>Product 2</option>
                             <option value='Product 3'>Product 3</option>
                         </select>
                     </label>
-                    {touched.product && errors.product ? (<div>{errors.product}</div>) : null}
-                    <label> Enter Quantity:
-                        <input type='number' id='quantity' name='quantity' value={values.quantity} onChange={handleChange} onBlur={handleBlur} /> 
+                    {touched.product && errors.product ? (<div className='mb-2 text-red-400'>{errors.product}</div>) : null}
+                    <label className='flex flex-row w-20'> Quantity
+                        <input type='number' id='quantity' name='quantity' className='mb-2 ml-4 border-2' value={values.quantity} onChange={handleChange} onBlur={handleBlur} /> 
                     </label>
-                    {touched.quantity && errors.quantity ? (<div>{errors.quantity}</div>) : null}
+                    {touched.quantity && errors.quantity ? (<div className='text-red-400'>{errors.quantity}</div>) : null}
+                    <button type="submit" className='w-full h-10 bg-blue-500 mt-10 hover:bg-blue-700 text-white'>SUBMIT</button>
                 </form>
             </Modal>
         </div>

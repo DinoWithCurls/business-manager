@@ -1,7 +1,12 @@
 import React, {useState} from "react";
 import CrudButton from "./crudButton";
+import ModalComponent from "./modal";
+
 
 const ItemCard = ({ item }) => {
+  const [openModalState, setOpenModalState] = useState(false);
+  const onOpen = () => setOpenModalState(true);
+  const onClose = () => setOpenModalState(false);
   return (
     <div className="flex flex-row border-2 rounded-sm w-full justify-between">
       <div>
@@ -15,9 +20,10 @@ const ItemCard = ({ item }) => {
       </div>
       <div>
         <div className="flex flex-col items-center justify-center">
-            <div className='m-3'><CrudButton buttonType={"EDIT"} /></div>
+            <div className='m-3'><CrudButton buttonType={"EDIT"} onClick={onOpen} /></div>
             <div><CrudButton buttonType={"DELETE"} /></div>
         </div>
+        {openModalState ? (<ModalComponent open={openModalState} onCloseModal={onClose} buttonType={'EDIT'} />) : null}
       </div>
     </div>
   );

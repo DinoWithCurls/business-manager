@@ -1,12 +1,11 @@
 import React from "react";
 import { PencilIcon, TrashIcon, PlusIcon } from "@heroicons/react/outline";
-const CrudButton = ({ buttonType }) => {
+const CrudButton = ({ buttonType, onClick}) => {
+
   return (
-    <div
+    <button
       className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full flex flex-row"
-      onClick={() => {
-        console.log(`${buttonType} pressed`);
-      }}
+      onClick={onClick}
     >
       {buttonType === "EDIT" ? (
         <PencilIcon className="h-5 w-5 text-white" />
@@ -16,7 +15,7 @@ const CrudButton = ({ buttonType }) => {
         <PlusIcon className="h-5 w-5 text-white" />
       )}
       {buttonType}
-    </div>
+    </button>
   );
 };
 
