@@ -23,7 +23,7 @@ const ItemCard = ({ item }) => {
             <div className='m-3'><CrudButton buttonType={"EDIT"} onClick={onOpen} /></div>
             <div><CrudButton buttonType={"DELETE"} /></div>
         </div>
-        {openModalState ? (<ModalComponent open={openModalState} onCloseModal={onClose} buttonType={'EDIT'} />) : null}
+        {openModalState ? (<ModalComponent open={openModalState} onCloseModal={onClose} buttonType={'EDIT'} item={item} />) : null}
       </div>
     </div>
   );

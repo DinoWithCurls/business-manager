@@ -25,13 +25,13 @@ const validate = (values) => {
     }
     return errors;
 }
-const ModalComponent = ({ open, onCloseModal, buttonType, }) => {
+const ModalComponent = ({ open, onCloseModal, buttonType, item }) => {
     const formik = useFormik({
         initialValues: {
             id: '',
             name: '',
             email: '',
-            product: '',
+            product: null,
             quantity: ''
         },
         validate,
@@ -39,6 +39,7 @@ const ModalComponent = ({ open, onCloseModal, buttonType, }) => {
             alert('Modal submitted!')
         }
     })
+    
     const { values, handleSubmit, handleBlur, handleChange, errors, touched } = formik;
     return (
         <div className='flex flex-col'>

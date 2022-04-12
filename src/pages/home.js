@@ -29,7 +29,7 @@ function Home() {
               <CrudButton buttonType={"ADD"} onClick={onOpen}/>
             </div>
           </div>
-          {addModalState ? (<ModalComponent open={addModalState} buttonType={'ADD'} onCloseModal={onClose} />) : null}
+          {addModalState ? (<ModalComponent open={addModalState} buttonType={'ADD'} onCloseModal={onClose} item={null} />) : null}
           <div>
             <div>
               {data.map((item) => (
