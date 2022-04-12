@@ -13,7 +13,7 @@ const validate = (values) => {
     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
         errors.email = 'Invalid email address';
     }
-    if (!values.product.value) {
+    if (!values.product) {
         errors.product = 'Required';
     } else if (!['Product 1', 'Product 2', 'Product 3'].includes(values.product)) {
         errors.product = 'Invalid Product';
@@ -31,7 +31,7 @@ const ModalComponent = ({ open, onCloseModal, buttonType, item }) => {
             id: '',
             name: '',
             email: '',
-            product: null,
+            product: '',
             quantity: ''
         },
         validate,
@@ -55,11 +55,11 @@ const ModalComponent = ({ open, onCloseModal, buttonType, item }) => {
                     </label>
                     {touched.email &&  errors.email ? (<div className='mb-2 text-red-400'>{errors.email}</div>): null}
                     <label className='flex flex-row'>Product
-                        <select value={values.product} className='ml-12 mb-2 border-2' onChange={handleChange} onBlur={handleBlur}>
-                            <option value="Nada">Select</option>
-                            <option value='Product 1'>Product 1</option>
-                            <option value='Product 2'>Product 2</option>
-                            <option value='Product 3'>Product 3</option>
+                        <select value={values.product} id='product' className='ml-12 mb-2 border-2' onChange={handleChange} onBlur={handleBlur}>
+                            <option id='0' value="Nada">Select</option>
+                            <option id='1' value='Product 1'>Product 1</option>
+                            <option id='2' value='Product 2'>Product 2</option>
+                            <option id='3' value='Product 3'>Product 3</option>
                         </select>
                     </label>
                     {touched.product && errors.product ? (<div className='mb-2 text-red-400'>{errors.product}</div>) : null}
