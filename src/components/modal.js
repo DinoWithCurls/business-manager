@@ -2,7 +2,6 @@ import React from 'react';
 import { useFormik } from 'formik';
 import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
-
 const validate = (values) => {
     const errors = {};
     if (!values.name) {
@@ -25,7 +24,7 @@ const validate = (values) => {
     }
     return errors;
 }
-const ModalComponent = ({ open, onCloseModal, buttonType, item, addItem }) => {
+const ModalComponent = ({ open, onCloseModal, buttonType, item, onSubmit }) => {
     const rand = (length, ...ranges) => {
             var str = "";
             while(length--){
@@ -55,7 +54,7 @@ const ModalComponent = ({ open, onCloseModal, buttonType, item, addItem }) => {
                     product: values.product,
                     quantity: values.quantity
                 }
-                addItem(details);
+                onSubmit(details);
             }
         }
     })

@@ -3,14 +3,17 @@ import CrudButton from "./crudButton";
 import ModalComponent from "./modal";
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
-
+import { useDispatch } from 'react-redux'
+import {editItem, deleteFromList} from '../redux/actions'
 toast.configure();
 
 const ItemCard = ({ item }) => {
   const [openModalState, setOpenModalState] = useState(false);
+  const dispatch = useDispatch();
   const onOpen = () => setOpenModalState(true);
   const onClose = () => setOpenModalState(false);
-  const onPressEdit = () => {
+  const onEdit = ({item}) => {
+    dispatch(editItem(item));
     toast.info('🔧 Edited the data!', {
       position: "top-right",
       autoClose: 5000,
@@ -19,9 +22,10 @@ const ItemCard = ({ item }) => {
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      });
+    });
   }
-  const onPressDelete = () => {
+  const onDelete = () => {
+    dispatch(deleteFromList(item));
     toast.warn('🗑 Deleted the data!', {
       position: "top-right",
       autoClose: 5000,
@@ -29,8 +33,8 @@ const ItemCard = ({ item }) => {
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
-      progress: undefined,
-      });
+      progress: undefined
+    })
   }
   return (
     <div className="flex flex-row border-2 rounded-sm w-full justify-between">
@@ -45,10 +49,10 @@ const ItemCard = ({ item }) => {
       </div>
       <div>
         <div className="flex flex-col items-center justify-center">
-            <div className='m-3'><CrudButton buttonType={"EDIT"} onClick={onPressEdit} /></div>
-            <div><CrudButton buttonType={"DELETE"} onClick={onPressDelete} /></div>
+            <div className='m-3'><CrudButton buttonType={"EDIT"} onClick={onOpen} /></div>
+            <div><CrudButton buttonType={"DELETE"} onClick={onDelete} /></div>
         </div>
-        {openModalState ? (<ModalComponent open={openModalState} onCloseModal={onClose} buttonType={'EDIT'} item={item} />) : null}
+        {openModalState ? (<ModalComponent open={openModalState} onCloseModal={onClose} buttonType={'EDIT'} item={item} onSubmit={onEdit} />) : null}
       </div>
     </div>
   );

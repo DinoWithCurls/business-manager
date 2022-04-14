@@ -1,19 +1,27 @@
 import React, { useState } from "react";
-import data from "../mock/data.json";
+
 import Profile from "../components/profileTab";
 import ItemCard from "../components/itemCard";
 import CrudButton from "../components/crudButton";
 import ModalComponent from "../components/modal";
-import {toast} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css' 
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+import { useDispatch, useSelector } from "react-redux";
+import { addToList } from "../redux/actions";
 
 toast.configure();
 
-function Home() {
+function Home({setToken}) {
   const [addModalState, openAddModal] = useState(false);
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.listReducer.list);
   const onOpen = () => {
-    //openAddModal(true)
-    toast.success('🛫 Added new data!', {
+    openAddModal(true);
+  };
+  const onSubmit = ({ item }) => {
+    dispatch(addToList(item));
+    toast.success("🛫 Added new data!", {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -21,21 +29,16 @@ function Home() {
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      });
-  }
+    });
+    
+  };
   const onClose = () => {
     openAddModal(false);
   };
-  const addItem = (val) => {
-    //var jsonArray = JSON.parse(JSON.stringify(val))
-    //getItems(val);
-    //data.push(jsonArray)
-    
-  }
   return (
     <div className="flex flex-row">
       <div className="basis-1/5 mr-1.5">
-        <Profile />
+        <Profile setToken={setToken} />
       </div>
       <div className="basis-4/5">
         <div className="flex flex-col">
@@ -57,7 +60,7 @@ function Home() {
               buttonType={"ADD"}
               onCloseModal={onClose}
               item={null}
-              addItem={addItem}
+              onSubmit={onSubmit}
             />
           ) : null}
           <div>

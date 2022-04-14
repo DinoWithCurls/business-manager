@@ -1,20 +1,23 @@
 
-import React, {useEffect} from 'react';
+import React from 'react';
 import {useGoogleLogin} from 'react-google-login';
-
 import { refreshTokenSetup } from '../../utils/refreshTokenSetup';
-//import { useDispatch, useSelector } from 'react-redux';
-//import { setLogin, setEmail, setName, setImage} from '../../redux/actions'
+import data from "../../mock/data.json";
+
+import { useDispatch } from 'react-redux';
+import { createList, setEmail, setName, setImage} from '../../redux/actions'
+
 const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
-const GoogleLoginButton = () => {
-    //const dispatch = useDispatch();
-    //const isLoggedIn = useSelector(state => state.loginReducer.login)
+
+const GoogleLoginButton = ({setToken}) => {
+    const dispatch = useDispatch();
     const onSuccess = (res) => {
          console.log(`[Login Success] currentUser` );
-         //dispatch(setLogin())
-         //dispatch(setName(res.profileObj.name));
-         //dispatch(setEmail(res.profileObj.email))
-         //dispatch(setImage(res.profileObj.imageUrl))
+         setToken('User Logged In');
+         dispatch(createList(data))
+         dispatch(setName(res.profileObj.name));
+         dispatch(setEmail(res.profileObj.email))
+         dispatch(setImage(res.profileObj.imageUrl))
          refreshTokenSetup(res);
      }
      const onFailure = (res) => {
@@ -27,11 +30,7 @@ const GoogleLoginButton = () => {
          isSignedIn:true,
          accessType:'offline'
      })
-     useEffect(()=>{
-         //if(isLoggedIn){
-            //setLoggedInState(true);
-         //}
-     }, []);
+     
     return (
         <div>
             <button onClick={signIn} className="w-40 h-10 border-2 rounded-full border-emerald-600">

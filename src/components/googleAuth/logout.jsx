@@ -2,10 +2,11 @@ import React from 'react';
 import { useGoogleLogout } from 'react-google-login';
 
 const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
-const GoogleLogoutButton = () => {
+const GoogleLogoutButton = ({setToken}) => {
     const onLogoutSuccess = () => {
         console.log('User logged out successfully');
         //onLogout();
+        setToken(false);
     }
     const onLogoutFailure = () => {
         console.log('Logout failed')
