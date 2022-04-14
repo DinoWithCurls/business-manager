@@ -1,16 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import GoogleLoginButton from '../components/googleAuth/login';
-function SignIn({isLogged}) {
-    const [loggedInState, setLoggedInState] = useState(false)
-    useEffect(()=>{
-        if(loggedInState) {
-            isLogged(true);
-        }
-    }, [])
+function SignIn() {
+
     return (
-        <div>
+        <div className='flex flex-col items-center justify-center h-screen'>
             <h1>Hello</h1>
-            <GoogleLoginButton setLoggedInState={setLoggedInState} />
+            <GoogleLoginButton />
         </div>
     );
 }
