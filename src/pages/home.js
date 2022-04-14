@@ -4,19 +4,34 @@ import Profile from "../components/profileTab";
 import ItemCard from "../components/itemCard";
 import CrudButton from "../components/crudButton";
 import ModalComponent from "../components/modal";
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css' 
+
+toast.configure();
+
 function Home() {
   const [addModalState, openAddModal] = useState(false);
   const [items, getItems] = useState([]);
   const onOpen = () => {
-    openAddModal(true)
+    //openAddModal(true)
+    toast.success('🛫 Added new data!', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      });
   }
   const onClose = () => {
     openAddModal(false);
   }
   const addItem = (val) => {
-    var jsonArray = JSON.parse(JSON.stringify(val))
-    getItems(val);
-    data.push(jsonArray)
+    //var jsonArray = JSON.parse(JSON.stringify(val))
+    //getItems(val);
+    //data.push(jsonArray)
+    
   }
   useEffect(()=>{
     console.log(JSON.stringify(items))

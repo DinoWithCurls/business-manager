@@ -1,12 +1,37 @@
 import React, {useState} from "react";
 import CrudButton from "./crudButton";
 import ModalComponent from "./modal";
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 
+toast.configure();
 
 const ItemCard = ({ item }) => {
   const [openModalState, setOpenModalState] = useState(false);
   const onOpen = () => setOpenModalState(true);
   const onClose = () => setOpenModalState(false);
+  const onPressEdit = () => {
+    toast.info('🔧 Edited the data!', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      });
+  }
+  const onPressDelete = () => {
+    toast.warn('🗑 Deleted the data!', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      });
+  }
   return (
     <div className="flex flex-row border-2 rounded-sm w-full justify-between">
       <div>
@@ -20,8 +45,8 @@ const ItemCard = ({ item }) => {
       </div>
       <div>
         <div className="flex flex-col items-center justify-center">
-            <div className='m-3'><CrudButton buttonType={"EDIT"} onClick={onOpen} /></div>
-            <div><CrudButton buttonType={"DELETE"} /></div>
+            <div className='m-3'><CrudButton buttonType={"EDIT"} onClick={onPressEdit} /></div>
+            <div><CrudButton buttonType={"DELETE"} onClick={onPressDelete} /></div>
         </div>
         {openModalState ? (<ModalComponent open={openModalState} onCloseModal={onClose} buttonType={'EDIT'} item={item} />) : null}
       </div>
