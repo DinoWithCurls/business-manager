@@ -6,11 +6,12 @@ import { refreshTokenSetup } from '../../utils/refreshTokenSetup';
 //import { useDispatch, useSelector } from 'react-redux';
 //import { setLogin, setEmail, setName, setImage} from '../../redux/actions'
 const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
-const GoogleLoginButton = () => {
+const GoogleLoginButton = ({setToken}) => {
     //const dispatch = useDispatch();
     //const isLoggedIn = useSelector(state => state.loginReducer.login)
     const onSuccess = (res) => {
          console.log(`[Login Success] currentUser` );
+         setToken('User logged in')
          //dispatch(setLogin())
          //dispatch(setName(res.profileObj.name));
          //dispatch(setEmail(res.profileObj.email))
