@@ -28,8 +28,8 @@ function Home() {
       </div>
       <div className="basis-4/5">
         <div className="flex flex-col">
-          <div className="h-32 border-2 relative ">
-            <div className="font-serif  h-12 justify-end">
+          <div className="h-32 relative ">
+            <div className="font-serif h-16 border-b-2 justify-end">
               <header className="text-center mt-3 text-3xl">
                 BUSINESS MANAGER
               </header>
