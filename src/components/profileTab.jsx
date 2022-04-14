@@ -1,6 +1,6 @@
 import React from 'react';
 import GoogleLogoutButton from './googleAuth/logout';
-function Profile(){
+function Profile({setToken}){
     return (
         <div className="p-10 bg-amber-200 h-screen ">
           {/*Profile div, with image, Name, Email ID and Logout. Get user data from Google Login  */}
@@ -15,7 +15,7 @@ function Profile(){
           <div>Name</div>
           <div>Email</div>
           <div className="align-center justify-center p-2">
-            <GoogleLogoutButton />
+            <GoogleLogoutButton setToken={setToken} />
           </div>
         </div>
     );

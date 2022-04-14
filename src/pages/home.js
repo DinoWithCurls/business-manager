@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css'
 
 toast.configure();
 
-function Home() {
+function Home({setToken}) {
   const [addModalState, openAddModal] = useState(false);
   const [items, getItems] = useState([]);
   const onOpen = () => {
@@ -39,7 +39,7 @@ function Home() {
   return (
     <div className="flex flex-row">
       <div className="basis-1/5 mr-1.5">
-        <Profile />
+        <Profile setToken={setToken} />
       </div>
       <div className="basis-4/5">
         <div className="flex flex-col">
