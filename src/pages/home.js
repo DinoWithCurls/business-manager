@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import data from "../mock/data.json";
 import Profile from "../components/profileTab";
 import ItemCard from "../components/itemCard";
@@ -11,7 +11,6 @@ toast.configure();
 
 function Home() {
   const [addModalState, openAddModal] = useState(false);
-  const [items, getItems] = useState([]);
   const onOpen = () => {
     //openAddModal(true)
     toast.success('🛫 Added new data!', {
@@ -33,9 +32,6 @@ function Home() {
     //data.push(jsonArray)
     
   }
-  useEffect(()=>{
-    console.log(JSON.stringify(items))
-  }, [items])
   return (
     <div className="flex flex-row">
       <div className="basis-1/5 mr-1.5">
