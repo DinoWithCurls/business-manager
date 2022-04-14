@@ -6,7 +6,8 @@ import CrudButton from "../components/crudButton";
 import ModalComponent from "../components/modal";
 function Home() {
   const [addModalState, openAddModal] = useState(false);
-  const [items, getItems] = useState([]);
+  const userData = JSON.parse(JSON.stringify(data));
+  
   const onOpen = () => {
     openAddModal(true)
   }
@@ -14,13 +15,9 @@ function Home() {
     openAddModal(false);
   }
   const addItem = (val) => {
-    var jsonArray = JSON.parse(JSON.stringify(val))
-    getItems(val);
-    data.push(jsonArray)
+    data.push(val)
+    console.log(`Details added for ${val.customer_name}`)
   }
-  useEffect(()=>{
-    console.log(JSON.stringify(items))
-  }, [items])
   return (
     <div className="flex flex-row">
       <div className="basis-1/5 mr-1.5">
@@ -41,9 +38,9 @@ function Home() {
           {addModalState ? (<ModalComponent open={addModalState} buttonType={'ADD'} onCloseModal={onClose} item={null} addItem={addItem} />) : null}
           <div>
             <div>
-              {data.map((item) => (
+              {userData.map((item) => (
                 <div key={item.id} className="mb-2">
-                  <ItemCard item={item} key={item.id} />
+                  <ItemCard item={item} arr={userData} key={item.id} />
                 </div>
               ))}
             </div>

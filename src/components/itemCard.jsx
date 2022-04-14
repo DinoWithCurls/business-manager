@@ -2,11 +2,20 @@ import React, {useState} from "react";
 import CrudButton from "./crudButton";
 import ModalComponent from "./modal";
 
-
-const ItemCard = ({ item }) => {
+const ItemCard = ({ arr, item }) => {
   const [openModalState, setOpenModalState] = useState(false);
+  
   const onOpen = () => setOpenModalState(true);
   const onClose = () => setOpenModalState(false);
+  const clickButton = (e) => {
+    const itemIndex = arr.indexOf(e)
+    arr = [...arr.slice(0, itemIndex), ...arr.slice(itemIndex  + 1)];
+    console.log(JSON.stringify(arr[2]))
+  }
+  //const deleteItem = ({l, i}) => {
+    //const itemIndex = l.indexOf(item);
+    //arr = [...l.slice(0, itemIndex), ...l.slice(itemIndex + 1)];
+    //return arr;}
   return (
     <div className="flex flex-row border-2 rounded-sm w-full justify-between">
       <div>
@@ -21,7 +30,7 @@ const ItemCard = ({ item }) => {
       <div>
         <div className="flex flex-col items-center justify-center">
             <div className='m-3'><CrudButton buttonType={"EDIT"} onClick={onOpen} /></div>
-            <div><CrudButton buttonType={"DELETE"} /></div>
+            <div><CrudButton buttonType={"DELETE"} onClick={()=> clickButton(item)} /></div>
         </div>
         {openModalState ? (<ModalComponent open={openModalState} onCloseModal={onClose} buttonType={'EDIT'} item={item} />) : null}
       </div>
