@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App';
+import {composeWithDevTools} from 'redux-devtools-extension'
 
 import { Provider } from 'react-redux';
 import {createStore, combineReducers, applyMiddleware } from 'redux';
@@ -11,6 +12,8 @@ import { PersistGate } from 'redux-persist/integration/react'
 import {persistStore, persistReducer} from 'redux-persist'
 import thunk from 'redux-thunk';
 import storage from 'redux-persist/lib/storage'
+
+const composedEnhancer = composeWithDevTools(applyMiddleware(thunk))
 
 const persistConfig = {
     key:'root',
@@ -22,7 +25,7 @@ const rootReducer = combineReducers({
     listReducer:persistReducer(persistConfig, listReducer)
 });
 
-const store = createStore(rootReducer, applyMiddleware(thunk))
+const store = createStore(rootReducer,composedEnhancer)
 const persistor = persistStore(store);
 
 

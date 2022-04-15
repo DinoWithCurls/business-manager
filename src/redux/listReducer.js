@@ -26,7 +26,7 @@ const createList = (state, action) => {
 
 
 const addToList = ( state, action ) => {
-    console.log('add to list called', action.payload.id);
+    console.log('add to list called', action.payload);
     return {
         ...state,
         list:[...state.list, action.payload]

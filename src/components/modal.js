@@ -4,12 +4,12 @@ import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
 const validate = (values) => {
     const errors = {};
-    if (!values.name) {
+    if (!values.customer_name) {
         errors.name = 'Required'
     }
-    if (!values.email) {
+    if (!values.customer_email) {
         errors.email = 'Required';
-    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.customer_email)) {
         errors.email = 'Invalid email address';
     }
     if (!values.product) {
@@ -38,11 +38,11 @@ const ModalComponent = ({ open, onCloseModal, buttonType, item, onSubmit }) => {
     }
     const formik = useFormik({
         initialValues: {
-            id: (item ? item.id : rand(25, ["a", "z"], ["0","9"])),
-            customer_name: (item ? item.customer_name : ''),
-            customer_email: (item ? item.customer_email : ''),
-            product: (item ? item.product : ''),
-            quantity: (item ? item.quantity : '')
+            id: (item.id ? item.id : rand(25, ["a", "z"], ["0","9"])),
+            customer_name: (item.customer_name ? item.customer_name : ''),
+            customer_email: (item.customer_email ? item.customer_email : ''),
+            product: (item.product ? item.product : ''),
+            quantity: (item.quantity ? item.quantity : '')
         },
         validate,
         onSubmit: values => {
@@ -65,6 +65,7 @@ const ModalComponent = ({ open, onCloseModal, buttonType, item, onSubmit }) => {
             <Modal open={open} onClose={onCloseModal} center>
                 <div className='mb-10  justify-center items-center'>{buttonType} DETAILS</div>
                 <form onSubmit={handleSubmit}>
+                    <label className='flex flex-row'>ID <div className='ml-10 mb-2'>{values.id}</div></label>
                     <label className='flex flex-row'>Name
                         <input id='customer_name' name='customer_name' type='text' className='ml-10 mb-2 border-2' value={values.customer_name} onChange={handleChange} onBlur={handleBlur} />
                     </label>
