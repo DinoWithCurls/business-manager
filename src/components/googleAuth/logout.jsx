@@ -5,8 +5,7 @@ const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
 const GoogleLogoutButton = ({setToken}) => {
     const onLogoutSuccess = () => {
         console.log('User logged out successfully');
-        //onLogout();
-        setToken(false);
+        setToken(false)
     }
     const onLogoutFailure = () => {
         console.log('Logout failed')

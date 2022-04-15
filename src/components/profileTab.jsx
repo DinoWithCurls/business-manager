@@ -7,10 +7,8 @@ function Profile({setToken}){
     const username = useSelector(state => state.loginReducer.name);
     const email = useSelector(state => state.loginReducer.email);
     const imageUrl = useSelector(state => state.loginReducer.imageUrl)
-  
     return (
         <div className="p-10 bg-amber-200 h-screen ">
-          {/*Profile div, with image, Name, Email ID and Logout. Get user data from Google Login  */}
           <div className=" px-4">
             <img
               src={imageUrl ? imageUrl : "https://www.creative-tim.com/learning-lab/tailwind-starter-kit/img/team-2-800x800.jpg"}

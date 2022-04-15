@@ -18,6 +18,7 @@ const GoogleLoginButton = ({setToken}) => {
          dispatch(setName(res.profileObj.name));
          dispatch(setEmail(res.profileObj.email))
          dispatch(setImage(res.profileObj.imageUrl))
+
          refreshTokenSetup(res);
      }
      const onFailure = (res) => {
