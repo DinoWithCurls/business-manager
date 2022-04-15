@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 
 import Profile from "../components/profileTab";
-import ItemCard from "../components/itemCard";
+import ItemList from "../components/itemList";
 import CrudButton from "../components/crudButton";
 import ModalComponent from "../components/modal";
+import Pagination from "../utils/pagination";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -11,9 +12,18 @@ import { useSelector } from "react-redux";
 
 toast.configure();
 
-function Home({setToken}) {
+function Home({ setToken }) {
   const [addModalState, openAddModal] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(10);
+
   const data = useSelector((state) => state.listReducer.list);
+
+  const lastPostIndex = currentPage * postsPerPage;
+  const firstPostIndex = lastPostIndex - postsPerPage;
+  const currentPosts = data.slice(firstPostIndex, lastPostIndex);
+  const paginateFront = () => setCurrentPage(currentPage + 1);
+  const paginateBack = () => setCurrentPage(currentPage - 1);
   const onOpen = () => {
     openAddModal(true);
   };
@@ -27,7 +37,6 @@ function Home({setToken}) {
       draggable: true,
       progress: undefined,
     });
-    
   };
   const onClose = () => {
     openAddModal(false);
@@ -61,12 +70,15 @@ function Home({setToken}) {
           ) : null}
           <div>
             <div className="mt-36 overflow-y-auto overflow-x-hidden">
-              {data.map((item) => (
-                <div key={item.id} className="mb-2">
-                  <ItemCard item={item} key={item.id} />
-                </div>
-              ))}
+              <ItemList items={currentPosts} />
             </div>
+            <Pagination
+              postsPerPage={postsPerPage}
+              totalPosts={data.length}
+              paginateFront={paginateFront}
+              paginateBack={paginateBack}
+              currentPage={currentPage}
+            />
           </div>
         </div>
       </div>
