@@ -1,10 +1,12 @@
-import { SET_NAME, SET_LOGIN, SET_EMAIL, SET_IMAGE } from "./actionTypes";
+import { SET_NAME, SET_EMAIL, SET_IMAGE, ADD_ITEM, DELETE_ITEM, EDIT_ITEM, CREATE_LIST } from "./actionTypes";
 
-const setLogin = () => {
+const createList = (data) => {
     return {
-        type: SET_LOGIN
+        type:CREATE_LIST,
+        payload:data
     }
 }
+
 const setName = (name) => {
     return{
         type:SET_NAME,
@@ -24,6 +26,27 @@ const setImage = (imageUrl) => {
     }
 }
 
+const addToList = (item) => {
+    return {
+        type: ADD_ITEM,
+        payload:item
+    }
+}
+
+const deleteFromList = (item) => {
+    return {
+        type: DELETE_ITEM,
+        payload: item
+    }
+}
+
+const editItem = (item) => {
+    return {
+        type: EDIT_ITEM,
+        payload: item
+    }
+}
+
 export {
-    setLogin, setName, setEmail, setImage
+    createList, setName, setEmail, setImage, addToList, deleteFromList, editItem
 }
