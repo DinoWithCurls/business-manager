@@ -36,17 +36,28 @@ const ModalComponent = ({ open, onCloseModal, buttonType, item, onSubmit }) => {
             }
             return str;
     }
+    const generatedID = rand(25, ["a", "z"], ["0","9"]);
     const formik = useFormik({
         initialValues: {
-            id: (item.id ? item.id : rand(25, ["a", "z"], ["0","9"])),
-            customer_name: (item.customer_name ? item.customer_name : ''),
-            customer_email: (item.customer_email ? item.customer_email : ''),
-            product: (item.product ? item.product : ''),
-            quantity: (item.quantity ? item.quantity : '')
+            id: (item?.id ? item?.id : generatedID),
+            customer_name: (item?.customer_name ? item?.customer_name : ''),
+            customer_email: (item?.customer_email ? item?.customer_email : ''),
+            product: (item?.product ? item?.product : ''),
+            quantity: (item?.quantity ? item?.quantity : '')
         },
         validate,
         onSubmit: values => {
             if(!item) {
+                const details = {
+                    id: values.id,
+                    customer_name: values.customer_name,
+                    customer_email: values.customer_email,
+                    product: values.product,
+                    quantity: values.quantity
+                }
+                onSubmit(details);
+            }
+            else {
                 const details = {
                     id: values.id,
                     customer_name: values.customer_name,

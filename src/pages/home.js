@@ -59,7 +59,6 @@ function Home({setToken}) {
               open={addModalState}
               buttonType={"ADD"}
               onCloseModal={onClose}
-              item={null}
               onSubmit={onSubmit}
             />
           ) : null}
