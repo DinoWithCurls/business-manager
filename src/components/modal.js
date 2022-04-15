@@ -2,6 +2,9 @@ import React from 'react';
 import { useFormik } from 'formik';
 import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
+
+import { useDispatch } from 'react-redux'
+import {editItem, addToList} from '../redux/actions'
 const validate = (values) => {
     const errors = {};
     if (!values.customer_name) {
@@ -25,6 +28,7 @@ const validate = (values) => {
     return errors;
 }
 const ModalComponent = ({ open, onCloseModal, buttonType, item, onSubmit }) => {
+    const dispatch = useDispatch();
     const rand = (length, ...ranges) => {
             var str = "";
             while(length--){
@@ -55,7 +59,9 @@ const ModalComponent = ({ open, onCloseModal, buttonType, item, onSubmit }) => {
                     product: values.product,
                     quantity: values.quantity
                 }
-                onSubmit(details);
+                dispatch(addToList(details));
+                onSubmit()
+                onCloseModal()
             }
             else {
                 const details = {
@@ -65,7 +71,9 @@ const ModalComponent = ({ open, onCloseModal, buttonType, item, onSubmit }) => {
                     product: values.product,
                     quantity: values.quantity
                 }
-                onSubmit(details);
+                dispatch(editItem(details));
+                onSubmit()
+                onCloseModal()
             }
         }
     })

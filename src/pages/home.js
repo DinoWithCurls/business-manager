@@ -7,20 +7,17 @@ import ModalComponent from "../components/modal";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { useDispatch, useSelector } from "react-redux";
-import { addToList } from "../redux/actions";
+import { useSelector } from "react-redux";
 
 toast.configure();
 
 function Home({setToken}) {
   const [addModalState, openAddModal] = useState(false);
-  const dispatch = useDispatch();
   const data = useSelector((state) => state.listReducer.list);
   const onOpen = () => {
     openAddModal(true);
   };
-  const onSubmit = ({ item }) => {
-    dispatch(addToList(item));
+  const onAdd = () => {
     toast.success("🛫 Added new data!", {
       position: "top-right",
       autoClose: 5000,
@@ -59,7 +56,7 @@ function Home({setToken}) {
               open={addModalState}
               buttonType={"ADD"}
               onCloseModal={onClose}
-              onSubmit={onSubmit}
+              onSubmit={onAdd}
             />
           ) : null}
           <div>

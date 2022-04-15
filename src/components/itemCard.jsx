@@ -4,7 +4,7 @@ import ModalComponent from "./modal";
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 import { useDispatch } from 'react-redux'
-import {editItem, deleteFromList} from '../redux/actions'
+import { deleteFromList } from '../redux/actions'
 toast.configure();
 
 const ItemCard = ({ item }) => {
@@ -12,8 +12,7 @@ const ItemCard = ({ item }) => {
   const dispatch = useDispatch();
   const onOpen = () => setOpenModalState(true);
   const onClose = () => setOpenModalState(false);
-  const onEdit = ({item}) => {
-    dispatch(editItem(item));
+  const onEdit = () => {
     toast.info('🔧 Edited the data!', {
       position: "top-right",
       autoClose: 5000,
