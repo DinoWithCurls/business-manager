@@ -8,7 +8,7 @@ import {editItem, addToList} from '../redux/actions'
 const validate = (values) => {
     const errors = {};
     if (!values.customer_name) {
-        errors.name = 'Required'
+        errors.customer_name = 'Required'
     }
     if (!values.customer_email) {
         errors.email = 'Required';
@@ -22,7 +22,7 @@ const validate = (values) => {
     }
     if (!values.quantity) {
         errors.quantity = 'Required';
-    } else if (values.quantity <= 0) {
+    } else if (values.quantity < 1) {
         errors.quantity = 'Invalid quantity';
     }
     return errors;
@@ -88,7 +88,7 @@ const ModalComponent = ({ open, onCloseModal, buttonType, item, onSubmit }) => {
                     <label className='flex flex-row'>Name
                         <input id='customer_name' name='customer_name' type='text' className='ml-10 mb-2 border-2' value={values.customer_name} onChange={handleChange} onBlur={handleBlur} />
                     </label>
-                    {touched.name && errors.name ? (<div className='mb-2 text-red-400'>{errors.name}</div>) : null}
+                    {touched.customer_name && errors.customer_name ? (<div className='mb-2 text-red-400'>{errors.customer_name}</div>) : null}
                     <label className='flex flex-row'>Email
                         <input id='customer_email' name='customer_email' type='email' className='ml-11 mb-2 border-2' value={values.customer_email} onChange={handleChange} onBlur={handleBlur} />
                     </label>
@@ -103,7 +103,7 @@ const ModalComponent = ({ open, onCloseModal, buttonType, item, onSubmit }) => {
                     </label>
                     {touched.product && errors.product ? (<div className='mb-2 text-red-400'>{errors.product}</div>) : null}
                     <label className='flex flex-row w-20'> Quantity
-                        <input type='number' id='quantity' name='quantity' className='mb-2 ml-4 border-2' value={values.quantity} onChange={handleChange} onBlur={handleBlur} /> 
+                        <input type='number' id='quantity' name='quantity' className='mb-2 ml-4 border-2' value={values.quantity} min={1} onChange={handleChange} onBlur={handleBlur} /> 
                     </label>
                     {touched.quantity && errors.quantity ? (<div className='text-red-400'>{errors.quantity}</div>) : null}
                     <button type="submit" className='w-full h-10 bg-blue-500 mt-10 hover:bg-blue-700 text-white'>SUBMIT</button>

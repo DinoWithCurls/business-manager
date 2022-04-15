@@ -29,7 +29,7 @@ const addToList = ( state, action ) => {
     console.log('add to list called', action.payload);
     return {
         ...state,
-        list:[...state.list, action.payload]
+        list:[action.payload, ...state.list]
     }
 }
 
