@@ -60,7 +60,6 @@ function Home({ setToken }) {
               </div>
             </div>
           </div>
-          <div className="h-full">
           {addModalState ? (
             <InputModal
               open={addModalState}
