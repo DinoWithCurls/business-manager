@@ -49,7 +49,7 @@ function Home({ setToken }) {
       <div className="basis-4/5 ml-auto">
         <div className="flex flex-col">
           <div className="h-32 w-4/5 z-50 fixed bg-gray-400 ">
-            <div className="font-serif h-16 justify-end">
+            <div className="font-mono h-16 justify-end">
               <header className="text-center text-3xl mt-8">
                 BUSINESS MANAGER
               </header>
