@@ -61,43 +61,48 @@ function Home({ setToken }) {
             </div>
           </div>
           <div className="h-full">
-          {addModalState ? (
-            <InputModal
-              open={addModalState}
-              buttonType={"ADD"}
-              onCloseModal={onClose}
-              onSubmit={onAdd}
-            />
-          ) : null}
-          <div>
-            <div className="mt-36 overflow-y-auto overflow-x-hidden">
-              <Pagination
-                postsPerPage={postsPerPage}
-                totalPosts={data.length}
-                paginateFront={paginateFront}
-                paginateBack={paginateBack}
-                currentPage={currentPage}
+            {addModalState ? (
+              <InputModal
+                open={addModalState}
+                buttonType={"ADD"}
+                onCloseModal={onClose}
+                onSubmit={onAdd}
               />
-              <ItemList items={currentPosts} />
+            ) : null}
+            <div>
+              <div className="mt-36 overflow-y-auto overflow-x-hidden">
+                <div className="ml-2">
+                  <Pagination
+                    postsPerPage={postsPerPage}
+                    totalPosts={data.length}
+                    paginateFront={paginateFront}
+                    paginateBack={paginateBack}
+                    currentPage={currentPage}
+                  />
+                </div>
+                <ItemList items={currentPosts} />
+              </div>
+              <div className="ml-2">
+                <Pagination
+                  postsPerPage={postsPerPage}
+                  totalPosts={data.length}
+                  paginateFront={paginateFront}
+                  paginateBack={paginateBack}
+                  currentPage={currentPage}
+                />
+              </div>
             </div>
-            <Pagination
-              postsPerPage={postsPerPage}
-              totalPosts={data.length}
-              paginateFront={paginateFront}
-              paginateBack={paginateBack}
-              currentPage={currentPage}
-            />
           </div>
         </div>
+        {addModalState ? (
+          <InputModal
+            open={addModalState}
+            buttonType={"ADD"}
+            onCloseModal={onClose}
+            onSubmit={onAdd}
+          />
+        ) : null}
       </div>
-      {addModalState ? (
-        <ModalComponent
-          open={addModalState}
-          buttonType={"ADD"}
-          onCloseModal={onClose}
-          onSubmit={onAdd}
-        />
-      ) : null}
     </div>
   );
 }
