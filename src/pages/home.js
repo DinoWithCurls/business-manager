@@ -91,7 +91,7 @@ function Home({ setToken }) {
         </div>
       </div>
       {addModalState ? (
-        <ModalComponent
+        <InputModal
           open={addModalState}
           buttonType={"ADD"}
           onCloseModal={onClose}
