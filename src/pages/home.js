@@ -42,11 +42,11 @@ function Home({ setToken }) {
     openAddModal(false);
   };
   return (
-    <div className="flex flex-row">
-      <div className="basis-1/5 mr-1.5">
+    <div className="flex flex-row justify-between">
+      <div className="basis-1/5 mr-1.5 fixed">
         <Profile setToken={setToken} />
       </div>
-      <div className="basis-4/5">
+      <div className="basis-4/5 ml-auto">
         <div className="flex flex-col">
           <div className="h-32 w-4/5 z-50 fixed bg-gray-400 ">
             <div className="font-serif h-16 justify-end">
@@ -60,43 +60,49 @@ function Home({ setToken }) {
               </div>
             </div>
           </div>
-          {addModalState ? (
-            <InputModal
-              open={addModalState}
-              buttonType={"ADD"}
-              onCloseModal={onClose}
-              onSubmit={onAdd}
-            />
-          ) : null}
-          <div>
-            <div className="mt-36 overflow-y-auto overflow-x-hidden">
-              <Pagination
-                postsPerPage={postsPerPage}
-                totalPosts={data.length}
-                paginateFront={paginateFront}
-                paginateBack={paginateBack}
-                currentPage={currentPage}
+          <div className="h-full">
+            {addModalState ? (
+              <InputModal
+                open={addModalState}
+                buttonType={"ADD"}
+                onCloseModal={onClose}
+                onSubmit={onAdd}
               />
-              <ItemList items={currentPosts} />
+            ) : null}
+            <div>
+              <div className="mt-36 overflow-y-auto overflow-x-hidden">
+                <div className="ml-2">
+                  <Pagination
+                    postsPerPage={postsPerPage}
+                    totalPosts={data.length}
+                    paginateFront={paginateFront}
+                    paginateBack={paginateBack}
+                    currentPage={currentPage}
+                  />
+                </div>
+                <ItemList items={currentPosts} />
+              </div>
+              <div className="ml-2">
+                <Pagination
+                  postsPerPage={postsPerPage}
+                  totalPosts={data.length}
+                  paginateFront={paginateFront}
+                  paginateBack={paginateBack}
+                  currentPage={currentPage}
+                />
+              </div>
             </div>
-            <Pagination
-              postsPerPage={postsPerPage}
-              totalPosts={data.length}
-              paginateFront={paginateFront}
-              paginateBack={paginateBack}
-              currentPage={currentPage}
-            />
           </div>
         </div>
+        {addModalState ? (
+          <InputModal
+            open={addModalState}
+            buttonType={"ADD"}
+            onCloseModal={onClose}
+            onSubmit={onAdd}
+          />
+        ) : null}
       </div>
-      {addModalState ? (
-        <InputModal
-          open={addModalState}
-          buttonType={"ADD"}
-          onCloseModal={onClose}
-          onSubmit={onAdd}
-        />
-      ) : null}
     </div>
   );
 }
