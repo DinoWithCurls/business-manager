@@ -36,7 +36,7 @@ const ItemCard = ({ item }) => {
     })
   }
   return (
-    <div className="flex flex-row border-2 rounded-sm w-full justify-between">
+    <div className="flex flex-row border-b-2 border-red-900 rounded-sm w-full justify-between">
       <div>
         <div className="text-l">
           <div className="flex flex-row"><p className="font-bold ml-2 w-24">ID </p><p>{item.id}</p></div>

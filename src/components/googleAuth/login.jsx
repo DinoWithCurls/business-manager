@@ -34,8 +34,8 @@ const GoogleLoginButton = ({setToken}) => {
      
     return (
         <div>
-            <button onClick={signIn} className="w-40 h-10 border-2 rounded-full border-emerald-600">
-                <span>Sign in with Google</span>
+            <button onClick={signIn} className="w-40 h-30 border-2 font-bold rounded-full border-red-600 text-red-600 bg-yellow-400">
+                <span>SIGN IN WITH GOOGLE</span>
             </button>
         </div>
     );

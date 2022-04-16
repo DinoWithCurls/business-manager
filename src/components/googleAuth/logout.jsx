@@ -16,8 +16,8 @@ const GoogleLogoutButton = ({setToken}) => {
         onLogoutFailure
     })
     return (
-        <button onClick={signOut} className='w-40 h-10 border-2 border-sky-600 bg-white'>
-            <span>Sign out</span>
+        <button onClick={signOut} className='w-40 h-10 border-2 text-red-600 border-red-600 bg-yellow-400 rounded-full'>
+            <span>SIGN OUT</span>
         </button>
     );
 }

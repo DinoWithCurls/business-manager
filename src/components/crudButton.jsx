@@ -4,15 +4,15 @@ const CrudButton = ({ buttonType, onClick}) => {
 
   return (
     <button
-      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full flex flex-row"
+      className="bg-amber-200 hover:bg-lime-100 text-orange-700 font-bold py-2 px-4 mr-2 rounded-full flex flex-row"
       onClick={onClick}
     >
       {buttonType === "EDIT" ? (
-        <PencilIcon className="h-5 w-5 text-white" />
+        <PencilIcon className="h-5 w-5 mr-2 text-yellow-800" />
       ) : buttonType === "DELETE" ? (
-        <TrashIcon className="h-5 w-5 text-white" />
+        <TrashIcon className="h-5 w-5 mr-2 text-red-800" />
       ) : (
-        <PlusIcon className="h-5 w-5 text-white" />
+        <PlusIcon className="h-5 w-5 mr-2 text-green-800" />
       )}
       {buttonType}
     </button>
