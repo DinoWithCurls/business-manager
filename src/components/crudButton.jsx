@@ -4,7 +4,7 @@ const CrudButton = ({ buttonType, onClick}) => {
 
   return (
     <button
-      className="bg-amber-200 hover:bg-lime-100 text-orange-700 font-bold py-2 px-4 mr-2 rounded-full flex flex-row"
+      className="bg-amber-200 hover:bg-lime-100 text-orange-700 font-bold py-2 px-4 mr-2 rounded-full flex flex-row font-sans"
       onClick={onClick}
     >
       {buttonType === "EDIT" ? (
