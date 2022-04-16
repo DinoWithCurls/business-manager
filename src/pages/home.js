@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Profile from "../components/profileTab";
 import ItemList from "../components/itemList";
 import CrudButton from "../components/crudButton";
-import ModalComponent from "../components/modal";
+import InputModal from "../components/modals/inputModal";
 import Pagination from "../utils/pagination";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -61,6 +61,15 @@ function Home({ setToken }) {
             </div>
           </div>
           <div className="h-full">
+          {addModalState ? (
+            <InputModal
+              open={addModalState}
+              buttonType={"ADD"}
+              onCloseModal={onClose}
+              onSubmit={onAdd}
+            />
+          ) : null}
+          <div>
             <div className="mt-36 overflow-y-auto overflow-x-hidden">
               <Pagination
                 postsPerPage={postsPerPage}

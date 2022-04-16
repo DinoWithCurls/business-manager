@@ -4,7 +4,7 @@ import 'react-responsive-modal/styles.css';
 import { Modal } from 'react-responsive-modal';
 
 import { useDispatch } from 'react-redux'
-import {editItem, addToList} from '../redux/actions'
+import {editItem, addToList} from '../../redux/actions'
 const validate = (values) => {
     const errors = {};
     if (!values.customer_name) {
@@ -27,7 +27,7 @@ const validate = (values) => {
     }
     return errors;
 }
-const ModalComponent = ({ open, onCloseModal, buttonType, item, onSubmit }) => {
+const InputModal = ({ open, onCloseModal, buttonType, item, onSubmit }) => {
     const dispatch = useDispatch();
     const rand = (length, ...ranges) => {
             var str = "";
@@ -113,4 +113,4 @@ const ModalComponent = ({ open, onCloseModal, buttonType, item, onSubmit }) => {
     );
 }
 
-export default ModalComponent;
+export default InputModal;
