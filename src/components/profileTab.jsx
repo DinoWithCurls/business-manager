@@ -17,8 +17,8 @@ function Profile({setToken}){
             />
           </div>
           <span className="m-3"></span>
-          <div>{username}</div>
-          <div>{email}</div>
+          <div className='font-serif'>{username}</div>
+          <div  className='font-serif'>{email}</div>
           <div className="align-center justify-center p-2">
             <GoogleLogoutButton setToken={setToken} />
           </div>
