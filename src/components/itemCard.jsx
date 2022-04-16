@@ -1,17 +1,18 @@
 import React, {useState} from "react";
 import CrudButton from "./crudButton";
-import ModalComponent from "./modal";
+import InputModal from "./modals/inputModal";
+import DialogModal from "./modals/dialogModal";
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
-import { useDispatch } from 'react-redux'
-import { deleteFromList } from '../redux/actions'
 toast.configure();
 
 const ItemCard = ({ item }) => {
   const [openModalState, setOpenModalState] = useState(false);
-  const dispatch = useDispatch();
+  const [dialogModalState, setDialogModalState] = useState(false);
   const onOpen = () => setOpenModalState(true);
   const onClose = () => setOpenModalState(false);
+  const onOpenDialog = () => setDialogModalState(true)
+  const onCloseDialog = () => setDialogModalState(false);
   const onEdit = () => {
     toast.info('🔧 Edited the data!', {
       position: "top-right",
@@ -24,7 +25,6 @@ const ItemCard = ({ item }) => {
     });
   }
   const onDelete = () => {
-    dispatch(deleteFromList(item));
     toast.warn('🗑 Deleted the data!', {
       position: "top-right",
       autoClose: 5000,
@@ -49,9 +49,10 @@ const ItemCard = ({ item }) => {
       <div>
         <div className="flex flex-col items-center justify-center">
             <div className='m-3'><CrudButton buttonType={"EDIT"} onClick={onOpen} /></div>
-            <div><CrudButton buttonType={"DELETE"} onClick={onDelete} /></div>
+            <div><CrudButton buttonType={"DELETE"} onClick={onOpenDialog} /></div>
         </div>
-        {openModalState ? (<ModalComponent open={openModalState} onCloseModal={onClose} buttonType={'EDIT'} item={item} onSubmit={onEdit} />) : null}
+        {openModalState ? (<InputModal open={openModalState} onCloseModal={onClose} buttonType={'EDIT'} item={item} onSubmit={onEdit} />) : null}
+        {dialogModalState ? (<DialogModal open={dialogModalState} onCloseModal={onCloseDialog} item={item} onSubmit={onDelete} />) : null}
       </div>
     </div>
   );
