@@ -15,10 +15,12 @@ const DialogModal = ({ open, onCloseModal, item, onSubmit }) => {
   return (
     <div className="flex flex-col">
       <Modal open={open} onClose={onCloseModal} center>
-        <div>Do you really want to delete this item?</div>
-        <div className="flex flex-row">
-          <button onClick={deleteFunction}>YES</button>
-          <button onClick={onCloseModal}>NO</button>
+        <div className="mt-5">
+          <div>Do you really want to delete this item?</div>
+          <div className="flex flex-row justify-between p-2">
+            <button onClick={deleteFunction} className='border-2 w-full mr-1 border-red-500 bg-red-500 text-white rounded-full'>YES</button>
+            <button onClick={onCloseModal} className='border-2 w-full ml-1 border-green-500 bg-green-500 text-white rounded-full'>NO</button>
+          </div>
         </div>
       </Modal>
     </div>
