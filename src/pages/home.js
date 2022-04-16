@@ -48,7 +48,7 @@ function Home({ setToken }) {
       </div>
       <div className="basis-4/5">
         <div className="flex flex-col">
-          <div className="h-32 w-4/5 fixed bg-gray-400 ">
+          <div className="h-32 w-4/5 z-50 fixed bg-gray-400 ">
             <div className="font-serif h-16 justify-end">
               <header className="text-center text-3xl mt-8">
                 BUSINESS MANAGER
@@ -60,16 +60,15 @@ function Home({ setToken }) {
               </div>
             </div>
           </div>
-          {addModalState ? (
-            <ModalComponent
-              open={addModalState}
-              buttonType={"ADD"}
-              onCloseModal={onClose}
-              onSubmit={onAdd}
-            />
-          ) : null}
-          <div>
+          <div className="h-full">
             <div className="mt-36 overflow-y-auto overflow-x-hidden">
+              <Pagination
+                postsPerPage={postsPerPage}
+                totalPosts={data.length}
+                paginateFront={paginateFront}
+                paginateBack={paginateBack}
+                currentPage={currentPage}
+              />
               <ItemList items={currentPosts} />
             </div>
             <Pagination
@@ -82,6 +81,14 @@ function Home({ setToken }) {
           </div>
         </div>
       </div>
+      {addModalState ? (
+        <ModalComponent
+          open={addModalState}
+          buttonType={"ADD"}
+          onCloseModal={onClose}
+          onSubmit={onAdd}
+        />
+      ) : null}
     </div>
   );
 }
