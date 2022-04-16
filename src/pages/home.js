@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import Profile from "../components/profileTab";
 import ItemList from "../components/itemList";
 import CrudButton from "../components/crudButton";
-import ModalComponent from "../components/modal";
+import InputModal from "../components/modals/inputModal";
 import Pagination from "../utils/pagination";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -48,7 +48,7 @@ function Home({ setToken }) {
       </div>
       <div className="basis-4/5 ml-auto">
         <div className="flex flex-col">
-          <div className="h-32 w-4/5 bg-gray-400 fixed">
+          <div className="h-32 w-4/5 z-50 fixed bg-gray-400 ">
             <div className="font-serif h-16 justify-end">
               <header className="text-center text-3xl mt-8">
                 BUSINESS MANAGER
@@ -60,8 +60,9 @@ function Home({ setToken }) {
               </div>
             </div>
           </div>
+          <div className="h-full">
           {addModalState ? (
-            <ModalComponent
+            <InputModal
               open={addModalState}
               buttonType={"ADD"}
               onCloseModal={onClose}
@@ -70,6 +71,13 @@ function Home({ setToken }) {
           ) : null}
           <div>
             <div className="mt-36 overflow-y-auto overflow-x-hidden">
+              <Pagination
+                postsPerPage={postsPerPage}
+                totalPosts={data.length}
+                paginateFront={paginateFront}
+                paginateBack={paginateBack}
+                currentPage={currentPage}
+              />
               <ItemList items={currentPosts} />
             </div>
             <Pagination
@@ -82,6 +90,14 @@ function Home({ setToken }) {
           </div>
         </div>
       </div>
+      {addModalState ? (
+        <ModalComponent
+          open={addModalState}
+          buttonType={"ADD"}
+          onCloseModal={onClose}
+          onSubmit={onAdd}
+        />
+      ) : null}
     </div>
   );
 }
