@@ -42,13 +42,13 @@ function Home({ setToken }) {
     openAddModal(false);
   };
   return (
-    <div className="flex flex-row">
-      <div className="basis-1/5 mr-1.5">
+    <div className="flex flex-row justify-between">
+      <div className="basis-1/5 mr-1.5 fixed">
         <Profile setToken={setToken} />
       </div>
-      <div className="basis-4/5">
+      <div className="basis-4/5 ml-auto">
         <div className="flex flex-col">
-          <div className="h-32 w-4/5 fixed bg-gray-400 ">
+          <div className="h-32 w-4/5 bg-gray-400 fixed">
             <div className="font-serif h-16 justify-end">
               <header className="text-center text-3xl mt-8">
                 BUSINESS MANAGER
